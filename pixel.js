@@ -19,5 +19,20 @@ const addRow = (boxCount) => {
     return rowDiv
 }
 
+const createPalette = (colors) => {
+    const paletteDiv = document.createElement('div')
+    paletteDiv.className = 'palette'
+
+    colors.forEach((color) => {
+        let paletteColor = document.createElement('div')
+        paletteColor.className = 'palette-color'
+        paletteColor.style.backgroundColor = color
+        paletteDiv.appendChild(paletteColor)
+    })
+
+    return paletteDiv
+}
+
 divMainContainer.appendChild(addRow(2))
 divMainContainer.appendChild(addRow(2))
+divMainContainer.appendChild(createPalette(['red', 'blue']))

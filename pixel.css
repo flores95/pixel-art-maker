@@ -16,3 +16,15 @@
     margin: 0;
     border: .5px solid rgba(0, 0, 0, .3);
 }
+
+.palette {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.palette-color {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    border: .5px solid rgba(0, 0, 0, 1);
+}
