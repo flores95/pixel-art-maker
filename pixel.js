@@ -35,6 +35,17 @@ const createPalette = (colors) => {
     return paletteDiv
 }
 
-divMainContainer.appendChild(addRow(2))
-divMainContainer.appendChild(addRow(2))
+const createCanvas= (rows, columns) => {
+    const canvasDiv = document.createElement('div')
+    canvasDiv.className = 'canvas'
+
+    for (let i = 0; i < rows; i++) {
+        canvasDiv.appendChild(addRow(columns))
+    }
+
+    return canvasDiv
+}
+
+
+divMainContainer.appendChild(createCanvas(10,10))
 divMainContainer.appendChild(createPalette(['red', 'blue']))
