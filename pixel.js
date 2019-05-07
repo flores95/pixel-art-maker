@@ -1,5 +1,4 @@
-// const divRow = document.querySelector('.row')
-// divRow.addEventListener('click', (event) => console.log(event))
+let selectedColor = 'white'
 
 const divMainContainer = document.querySelector('.main-container')
 
@@ -27,6 +26,9 @@ const createPalette = (colors) => {
         let paletteColor = document.createElement('div')
         paletteColor.className = 'palette-color'
         paletteColor.style.backgroundColor = color
+        paletteColor.addEventListener('click', () => {
+            selectedColor = color
+        })
         paletteDiv.appendChild(paletteColor)
     })
 
