@@ -11,6 +11,13 @@ const addRow = (boxCount) => {
         boxDiv.className = 'box'
         boxDiv.addEventListener('click', () => {
             boxDiv.style.backgroundColor = selectedColor
+            boxDiv.style.borderColor = selectedColor
+        })
+        boxDiv.addEventListener('mouseenter', (event) => {
+            if (event.buttons) {
+                boxDiv.style.backgroundColor = selectedColor
+                boxDiv.style.borderColor = selectedColor
+            }
         })
         rowDiv.appendChild(boxDiv)
     }
