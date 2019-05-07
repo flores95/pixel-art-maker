@@ -10,7 +10,7 @@ const addRow = (boxCount) => {
         let boxDiv = document.createElement('div')
         boxDiv.className = 'box'
         boxDiv.addEventListener('click', () => {
-            boxDiv.style.backgroundColor = "rgba(255, 0, 0, 1)"
+            boxDiv.style.backgroundColor = selectedColor
         })
         rowDiv.appendChild(boxDiv)
     }
@@ -46,6 +46,18 @@ const createCanvas= (rows, columns) => {
     return canvasDiv
 }
 
+const colors = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple',
+    'brown',
+    'gray',
+    'black',
+    'white'
+]
 
 divMainContainer.appendChild(createCanvas(10,10))
-divMainContainer.appendChild(createPalette(['red', 'blue']))
+divMainContainer.appendChild(createPalette(colors))
