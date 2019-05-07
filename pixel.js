@@ -28,9 +28,16 @@ const createPalette = (colors) => {
         paletteColor.style.backgroundColor = color
         paletteColor.addEventListener('click', () => {
             selectedColor = color
+            const ccDiv = document.getElementById('current-color')
+            ccDiv.style.backgroundColor = selectedColor 
         })
         paletteDiv.appendChild(paletteColor)
     })
+
+    const currentColorDiv = document.createElement('div')
+    currentColorDiv.className = 'current-color-info'
+    currentColorDiv.innerHTML = 'Current Color > <span id="current-color"></span>'
+    paletteDiv.appendChild(currentColorDiv)
 
     return paletteDiv
 }
