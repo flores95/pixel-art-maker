@@ -66,5 +66,5 @@ const colors = [
     'white'
 ]
 
-divMainContainer.appendChild(createCanvas(10,10))
+divMainContainer.appendChild(createCanvas(60,60))
 divMainContainer.appendChild(createPalette(colors))
