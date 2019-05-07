@@ -10,6 +10,9 @@ const addRow = (boxCount) => {
     for(let i = 0; i < boxCount; i++) {
         let boxDiv = document.createElement('div')
         boxDiv.className = 'box'
+        boxDiv.addEventListener('click', () => {
+            boxDiv.style.backgroundColor = "rgba(255, 0, 0, 1)"
+        })
         rowDiv.appendChild(boxDiv)
     }
 
