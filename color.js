@@ -1,4 +1,5 @@
-const ArrayRange = (range) => [...Array(range).keys()]
+const ArrayUtil = {}
+ArrayUtil.range = (range) => [...Array(range).keys()]
 
 class Color {
   constructor(red = 255, green = 255, blue = 255, alpha = 1) {
@@ -19,7 +20,7 @@ class Color {
 
     const isWhite = (this.red === 255 && this.green === 255 && this.blue === 255)
     const iterations = (isWhite) ? variationCount : Math.floor(variationCount) / 2
-    return ArrayRange(iterations)
+    return ArrayUtil.range(iterations)
       .reduce((acc, cnt) => {
         const step = (cnt + 1) * stepSize
 

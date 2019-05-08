@@ -85,9 +85,7 @@ const createCanvas = (rows, columns) => {
   const canvasDiv = document.createElement('div')
   canvasDiv.className = 'canvas'
 
-  for (let i = 0; i < rows; i++) {
-    canvasDiv.appendChild(addRow(columns))
-  }
+  ArrayUtil.range(rows).forEach(row => canvasDiv.appendChild(addRow(columns)))
 
   return canvasDiv
 }
