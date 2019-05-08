@@ -2,8 +2,6 @@ const ArrayRange = (range) => [...Array(range).keys()]
 
 let selectedColor = 'white'
 
-const divMainContainer = document.querySelector('.main-container')
-
 const addRow = (boxCount) => {
     const rowDiv = document.createElement('div')
     rowDiv.className = 'row'
@@ -75,5 +73,6 @@ const colors = [
     'white'
 ]
 
-divMainContainer.appendChild(createCanvas(60,60))
+const divMainContainer = document.querySelector('.main-container')
+divMainContainer.appendChild(createCanvas(40,60))
 divMainContainer.appendChild(createPalette(colors))
