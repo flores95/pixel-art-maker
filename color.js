@@ -6,6 +6,8 @@ class color {
     this.green = green
     this.blue = blue
     this.alpha = alpha
+    
+    this.colorAttributes = ['red', 'green', 'blue']
   }
 
   css() {
@@ -14,24 +16,23 @@ class color {
 
   colorGradients(variableAttribute, variationCount) {
     const stepSize = Math.floor(255 / variationCount)
-    return ArrayRange(Math.floor(variationCount / 2)).reduce((acc, cnt) => {
-      const step = (cnt + 1) * stepSize
-      switch (variableAttribute.toUpperCase()) {
-        case 'RED':
-          acc.push(new color(this.red - step, this.green, this.blue, this.alpha))
-          acc.push(new color(this.red, this.green + step, this.blue + step, this.alpha))
-          break;
-        case 'GREEN':
-          acc.push(new color(this.red, this.green - step, this.blue, this.alpha))
-          acc.push(new color(this.red + step, this.green, this.blue + step, this.alpha))
-          break;
-        case 'BLUE':
-          acc.push(new color(this.red, this.green, this.blue - step, this.alpha))
-          acc.push(new color(this.red + step, this.green + step, this.blue, this.alpha))
-          break;
-      }
-      return acc
-    }, []).sort((a, b) => a[variableAttribute] - b[variableAttribute])
+    return ArrayRange(Math.floor(variationCount / 2))
+      .reduce((acc, cnt) => {
+        const step = (cnt + 1) * stepSize
+
+        const darker = new color(this.red, this.green, this.blue, this.alpha)
+        darker[variableAttribute] -= step
+        acc.push(darker)
+
+        const lighter = new color(this.red, this.green, this.blue, this.alpha)
+        this.colorAttributes
+          .filter(attr => attr !== variableAttribute)
+          .forEach(filtered => this[filtered] += step)
+        acc.push(lighter)
+
+        return acc
+      }, [])
+      .sort((a, b) => a[variableAttribute] - b[variableAttribute])
   }
 }
 
