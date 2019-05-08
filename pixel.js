@@ -1,3 +1,5 @@
+const ArrayRange = (range) => [...Array(range).keys()] 
+
 let selectedColor = 'white'
 
 const divMainContainer = document.querySelector('.main-container')
