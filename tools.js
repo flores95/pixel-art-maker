@@ -4,10 +4,13 @@ class Tool {
     this.config = config
   }
   
-  static createSelector(name, icon, id) {
+  static createSelector(config, name, icon, id) {
     const selector = createElement('div', 'tool-selector', id)
     selector.className += ` fas ${icon}`
     selector.name = name
+    selector.addEventListener('click', () => {
+      config.style.display = 'block'
+    })
     return selector
   }
 }
