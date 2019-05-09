@@ -64,6 +64,24 @@
   margin-left: 10px;
 }
 
+.tool-selector {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.tool-selector > div {
+  flex: 1 1 auto;
+  border: .25px solid rgba(0,0,0, .1);
+  padding: 10px;
+  color: rgba(0,0,0,.3);
+}
+
+.tool-selector > div:hover {
+  background-color: rgba(255,255,255,.2);
+  color: rgba(0,0,0,.7);
+}
+
 .hidden {
   display: none;
 }

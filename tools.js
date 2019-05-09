@@ -17,16 +17,16 @@ class Tool {
 
 let createToolbox = (parent, ...tools) => {
   const toolbox = createElement('div', 'toolbox', 'toolbox')
-  const toolConfig = createElement('div', 'tool-config', 'tool-config')
   const toolSelector = createElement('div', 'tool-selector', 'tool-selector')
+  const toolConfig = createElement('div', 'tool-config', 'tool-config')
 
   tools.forEach(tool => {
-    toolConfig.appendChild(tool.config)
     toolSelector.appendChild(tool.selector)
+    toolConfig.appendChild(tool.config)
   })
 
-  toolbox.appendChild(toolConfig)
   toolbox.appendChild(toolSelector)
+  toolbox.appendChild(toolConfig)
 
   parent.appendChild(toolbox)
 }
