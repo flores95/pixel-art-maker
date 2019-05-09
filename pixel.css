@@ -48,20 +48,16 @@
   margin: 5px;
 }
 
-.current-color-info {
-  display: flex;
-  flex-flow: row nowrap;
-  text-align: center;
-  align-items: center;
-  padding: 5px;
-}
-
 #current-color {
-  height: 20px;
-  width: 50px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: row nowrap;
+  max-height: 14px;
+  max-width: 14px;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, .3);
-  margin-left: 10px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 18px;
+  margin-left: 5px;
 }
 
 .tool-selector {
@@ -71,6 +67,8 @@
 }
 
 .tool-selector > div {
+  display: flex;
+  justify-content: center;
   flex: 1 1 auto;
   border: .25px solid rgba(0,0,0, .1);
   padding: 10px;

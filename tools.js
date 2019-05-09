@@ -12,7 +12,7 @@ class Tool {
   }
   
   static createTool(name, icon, id, config, selected) {
-    const selector = createElement('div', 'tool-selector', id)
+    const selector = createElement('div', '', id)
     selector.className += ` fas ${icon}`
     selector.name = name
     const tool = new Tool(selector, config)

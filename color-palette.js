@@ -3,7 +3,12 @@ const createColorPalette = (baseColors, selected) => {
   createPaletteConfig(config, baseColors, selected)
   config.style.display = 'none'
 
-  return Tool.createTool('Color Palette', 'fa-palette', 'color-pallet-selector', config, selected)
+  const paletteTool = Tool.createTool('Color Palette', 'fa-palette', 'color-pallet-selector', config, selected)
+
+  const currentColor = createElement('div', 'current-color', 'current-color')
+  paletteTool.selector.appendChild(currentColor)
+  
+  return paletteTool
 }
 
 const createPaletteConfig = (parent, colors, selected) => {
@@ -27,10 +32,6 @@ const createPaletteConfig = (parent, colors, selected) => {
 
     palette.appendChild(paletteColor)
   })
-
-  const currentColor = createElement('div', 'current-color-info')
-  currentColor.innerHTML = 'Current Color > <span id="current-color"></span>'
-  palette.appendChild(currentColor)
 
   parent.appendChild(palette)
   return palette
