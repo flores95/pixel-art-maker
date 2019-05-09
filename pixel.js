@@ -1,4 +1,4 @@
-let selectedColor = 'white'
+let selected = {palette: null, color: 'white'}
 
 const addRow = (parent, boxCount) => {
   const rowDiv = document.createElement('div')
@@ -8,13 +8,13 @@ const addRow = (parent, boxCount) => {
     let boxDiv = document.createElement('div')
     boxDiv.className = 'box'
     boxDiv.addEventListener('click', () => {
-      boxDiv.style.backgroundColor = selectedColor
-      boxDiv.style.borderColor = selectedColor
+      boxDiv.style.backgroundColor = selected.color
+      boxDiv.style.borderColor = selected.color
     })
     boxDiv.addEventListener('mouseenter', (event) => {
       if (event.buttons) {
-        boxDiv.style.backgroundColor = selectedColor
-        boxDiv.style.borderColor = selectedColor
+        boxDiv.style.backgroundColor = selected.color
+        boxDiv.style.borderColor = selected.color
       }
     })
     rowDiv.appendChild(boxDiv)
@@ -30,7 +30,6 @@ const createPalette = (parent, colors) => {
   const gradientsDiv = document.createElement('div')
   gradientsDiv.className = 'gradients-palette'
   gradientsDiv.id = 'gradients-palette'
-  gradientsDiv.style.display = 'none'
   parent.appendChild(gradientsDiv)
 
   colors.forEach((color) => {
@@ -40,11 +39,12 @@ const createPalette = (parent, colors) => {
     paletteColor.style.backgroundColor = baseColor.css()
     const gradientPalette = createGradientPalette(gradientsDiv, baseColor.colorGradients(color.attrs, 12))
     paletteColor.addEventListener('click', () => {
-      selectedColor = baseColor.css()
+      if (selected.palette) { selected.palette.style.display = 'none'; }
+      selected.color = baseColor.css()
+      selected.palette = gradientPalette;
+      gradientPalette.style.display = 'flex'
       const ccDiv = document.getElementById('current-color')
-      ccDiv.style.backgroundColor = selectedColor
-      gradientsDiv.style.display = 'block'
-      gradientPalette.style.display = 'block'
+      ccDiv.style.backgroundColor = selected.color
     })
     paletteDiv.appendChild(paletteColor)
   })
@@ -68,12 +68,10 @@ const createGradientPalette = (parent, colors) => {
     paletteColor.className = 'palette-color'
     paletteColor.style.backgroundColor = color.css()
     paletteColor.addEventListener('click', () => {
-      selectedColor = color.css()
+      selected.color = color.css()
       const ccDiv = document.getElementById('current-color')
-      ccDiv.style.backgroundColor = selectedColor
+      ccDiv.style.backgroundColor = selected.color
       const gradientsPaletteDiv = document.getElementById('gradients-palette')
-      gradientsPaletteDiv.style.display = 'none'
-      gradientPaletteDiv.style.display = 'none'
       console.log(gradientPaletteDiv)
     })
     gradientPaletteDiv.appendChild(paletteColor)
