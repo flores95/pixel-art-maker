@@ -3,11 +3,8 @@ const createColorPalette = (baseColors, selected) => {
   createPaletteConfig(config, baseColors, selected)
   config.style.display = 'none'
 
-  const paletteTool = Tool.createTool('Color Palette', 'fa-palette', 'color-pallet-selector', config, selected)
+  const paletteTool = Tool.createTool('Color Palette', 'fa-palette', 'color-palette-selector', config, selected)
 
-  const currentColor = createElement('div', 'current-color', 'current-color')
-  paletteTool.selector.appendChild(currentColor)
-  
   return paletteTool
 }
 
@@ -27,7 +24,7 @@ const createPaletteConfig = (parent, colors, selected) => {
       selected.color = baseColor.css()
       selected.palette = gradientPalette;
       gradientPalette.style.display = 'flex'
-      document.getElementById('current-color').style.backgroundColor = selected.color
+      document.getElementById('color-palette-selector').style.color = selected.color
     })
 
     palette.appendChild(paletteColor)
@@ -46,7 +43,7 @@ const createGradientPalette = (parent, colors, selected) => {
     paletteColor.style.backgroundColor = color.css()
     paletteColor.addEventListener('click', () => {
       selected.color = color.css()
-      document.getElementById('current-color').style.backgroundColor = selected.color
+      document.getElementById('color-palette-selector').style.color = selected.color
     })
     gradientPalette.appendChild(paletteColor)
   })

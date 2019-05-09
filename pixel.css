@@ -48,18 +48,6 @@
   margin: 5px;
 }
 
-#current-color {
-  display: flex;
-  flex: 1 1 auto;
-  flex-flow: row nowrap;
-  max-height: 14px;
-  max-width: 14px;
-  background-color: white;
-  border: 1px solid rgba(255, 255, 255, .3);
-  border-radius: 18px;
-  margin-left: 5px;
-}
-
 .tool-selector {
   display: flex;
   flex-flow: row wrap;

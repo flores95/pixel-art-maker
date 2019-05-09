@@ -8,7 +8,7 @@ class Tool {
   toggle() {
     this.selected = !this.selected
     this.config.style.display = (this.selected) ? 'block' : 'none'
-    this.selector.style.color = (this.selected) ? "rgba(0,0,0,.7)" : "rgba(0,0,0,.3)"
+    this.selector.style.backgroundColor = (this.selected) ? "rgba(255,255,255,.3)" : "rgba(0,0,0,0)"
   }
   
   static createTool(name, icon, id, config, selected) {
