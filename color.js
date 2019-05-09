@@ -1,6 +1,3 @@
-const ArrayUtil = {}
-ArrayUtil.range = (range) => [...Array(range).keys()]
-
 class Color {
   constructor(red = 255, green = 255, blue = 255, alpha = 1) {
     this.red = red
