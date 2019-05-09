@@ -24,5 +24,6 @@ const divMainContainer = document.querySelector('.main-container')
 createCanvas(divMainContainer, 40, 60, selected)
 createToolbox(
   divMainContainer,
+  createPaintTool(),
   createColorPalette(baseColors, selected)
 )
