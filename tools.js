@@ -2,16 +2,29 @@ class Tool {
   constructor(selector, config) {
     this.selector = selector
     this.config = config
+    this.selected = false
+  }
+
+  toggle() {
+    this.selected = !this.selected
+    this.config.style.display = (this.selected) ? 'block' : 'none'
+    this.selector.style.color = (this.selected) ? "rgba(0,0,0,.7)" : "rgba(0,0,0,.3)"
   }
   
-  static createSelector(config, name, icon, id) {
+  static createTool(name, icon, id, config, selected) {
     const selector = createElement('div', 'tool-selector', id)
     selector.className += ` fas ${icon}`
     selector.name = name
+    const tool = new Tool(selector, config)
+
     selector.addEventListener('click', () => {
-      config.style.display = 'block'
+      if (selected.tool) {
+        selected.tool.toggle()
+      }
+      selected.tool = tool
+      selected.tool.toggle()
     })
-    return selector
+    return tool
   }
 }
 

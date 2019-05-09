@@ -8,7 +8,11 @@ const createElement = (tag = 'div', className = '', id = '') => {
   return el
 } 
 
-const selected = {palette: null, color: 'white'}
+const selected = {
+  palette: null,
+  color: 'white',
+  tool: null
+}
 
 const baseColors = [
   {rgb: [255, 0, 0, 1], attrs: ['red']},
@@ -24,6 +28,6 @@ const divMainContainer = document.querySelector('.main-container')
 createCanvas(divMainContainer, 40, 60, selected)
 createToolbox(
   divMainContainer,
-  createPaintTool(),
+  createPaintTool(selected),
   createColorPalette(baseColors, selected)
 )

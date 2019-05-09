@@ -3,8 +3,7 @@ const createColorPalette = (baseColors, selected) => {
   createPaletteConfig(config, baseColors, selected)
   config.style.display = 'none'
 
-  const selector = Tool.createSelector(config, 'Color Palette', 'fa-palette', 'color-pallet-selector')
-  return new Tool(selector, config)
+  return Tool.createTool('Color Palette', 'fa-palette', 'color-pallet-selector', config, selected)
 }
 
 const createPaletteConfig = (parent, colors, selected) => {
