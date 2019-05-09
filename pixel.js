@@ -1,6 +1,6 @@
 let selectedColor = 'white'
 
-const addRow = (boxCount) => {
+const addRow = (parent, boxCount) => {
   const rowDiv = document.createElement('div')
   rowDiv.className = 'row'
 
@@ -20,25 +20,25 @@ const addRow = (boxCount) => {
     rowDiv.appendChild(boxDiv)
   }
 
+  parent.appendChild(rowDiv)
   return rowDiv
 }
 
-const createPalette = (colors) => {
+const createPalette = (parent, colors) => {
   const paletteDiv = document.createElement('div')
   paletteDiv.className = 'palette'
   const gradientsDiv = document.createElement('div')
   gradientsDiv.className = 'gradients-palette'
   gradientsDiv.id = 'gradients-palette'
   gradientsDiv.style.display = 'none'
-  paletteDiv.appendChild(gradientsDiv)
+  parent.appendChild(gradientsDiv)
 
   colors.forEach((color) => {
     const baseColor = new Color(...color.rgb)
     let paletteColor = document.createElement('div')
     paletteColor.className = 'palette-color'
     paletteColor.style.backgroundColor = baseColor.css()
-    const gradientPalette = createGradientPalette(baseColor.colorGradients(color.attrs, 12))
-    gradientsDiv.appendChild(gradientPalette)
+    const gradientPalette = createGradientPalette(gradientsDiv, baseColor.colorGradients(color.attrs, 12))
     paletteColor.addEventListener('click', () => {
       selectedColor = baseColor.css()
       const ccDiv = document.getElementById('current-color')
@@ -54,10 +54,11 @@ const createPalette = (colors) => {
   currentColorDiv.innerHTML = 'Current Color > <span id="current-color"></span>'
   paletteDiv.appendChild(currentColorDiv)
 
+  parent.appendChild(paletteDiv)
   return paletteDiv
 }
 
-const createGradientPalette = (colors) => {
+const createGradientPalette = (parent, colors) => {
   const gradientPaletteDiv = document.createElement('div')
   gradientPaletteDiv.className = 'palette'
   gradientPaletteDiv.style.display = 'none'
@@ -78,15 +79,17 @@ const createGradientPalette = (colors) => {
     gradientPaletteDiv.appendChild(paletteColor)
   })
 
+  parent.appendChild(gradientPaletteDiv)
   return gradientPaletteDiv
 }
 
-const createCanvas = (rows, columns) => {
+const createCanvas = (parent, rows, columns) => {
   const canvasDiv = document.createElement('div')
   canvasDiv.className = 'canvas'
 
-  ArrayUtil.range(rows).forEach(row => canvasDiv.appendChild(addRow(columns)))
+  ArrayUtil.range(rows).forEach(row => addRow(canvasDiv, columns))
 
+  parent.appendChild(canvasDiv)
   return canvasDiv
 }
 
@@ -101,5 +104,5 @@ let baseColors = [
 ]
 
 const divMainContainer = document.querySelector('.main-container')
-divMainContainer.appendChild(createCanvas(40, 60))
-divMainContainer.appendChild(createPalette(baseColors))
+createCanvas(divMainContainer, 40, 60)
+createPalette(divMainContainer, baseColors)
