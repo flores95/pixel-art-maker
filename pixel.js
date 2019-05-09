@@ -8,38 +8,38 @@ const createElement = (tag = 'div', className = '', id = '') => {
 } 
 
 const addRow = (parent, boxCount, rowNum) => {
-  const rowDiv = createElement('div', 'row')
+  const row = createElement('div', 'row')
 
   ArrayUtil.range(boxCount).forEach(colNum => {
-    let boxDiv = createElement('div', 'box', `r${rowNum}c${colNum}`)
-    boxDiv.addEventListener('click', () => {
-      boxDiv.style.backgroundColor = selected.color
-      boxDiv.style.borderColor = selected.color
+    let box = createElement('div', 'box', `r${rowNum}c${colNum}`)
+    box.addEventListener('click', () => {
+      box.style.backgroundColor = selected.color
+      box.style.borderColor = selected.color
     })
-    boxDiv.addEventListener('mouseenter', (event) => {
+    box.addEventListener('mouseenter', (event) => {
       if (event.buttons) {
-        boxDiv.style.backgroundColor = selected.color
-        boxDiv.style.borderColor = selected.color
+        box.style.backgroundColor = selected.color
+        box.style.borderColor = selected.color
       }
     })
-    rowDiv.appendChild(boxDiv)
+    row.appendChild(box)
   })
 
-  parent.appendChild(rowDiv)
-  return rowDiv
+  parent.appendChild(row)
+  return row
 }
 
 const createPalette = (parent, colors) => {
-  const gradientsDiv = createElement('div', 'gradients-palette', 'gradients-palette')
-  parent.appendChild(gradientsDiv)
+  const gradientsPalette = createElement('div', 'gradients-palette', 'gradients-palette')
+  parent.appendChild(gradientsPalette)
 
-  const paletteDiv = createElement('div', 'palette')
+  const palette = createElement('div', 'palette')
   colors.forEach((color) => {
     const baseColor = new Color(...color.rgb)
     let paletteColor = createElement('div', 'palette-color')
     paletteColor.style.backgroundColor = baseColor.css()
 
-    const gradientPalette = createGradientPalette(gradientsDiv, baseColor.colorGradients(color.attrs, 16))
+    const gradientPalette = createGradientPalette(gradientsPalette, baseColor.colorGradients(color.attrs, 16))
     paletteColor.addEventListener('click', () => {
       if (selected.palette) { selected.palette.style.display = 'none'; }
       selected.color = baseColor.css()
@@ -48,20 +48,20 @@ const createPalette = (parent, colors) => {
       document.getElementById('current-color').style.backgroundColor = selected.color
     })
 
-    paletteDiv.appendChild(paletteColor)
+    palette.appendChild(paletteColor)
   })
 
-  const currentColorDiv = createElement('div', 'current-color-info')
-  currentColorDiv.innerHTML = 'Current Color > <span id="current-color"></span>'
-  paletteDiv.appendChild(currentColorDiv)
+  const currentColor = createElement('div', 'current-color-info')
+  currentColor.innerHTML = 'Current Color > <span id="current-color"></span>'
+  palette.appendChild(currentColor)
 
-  parent.appendChild(paletteDiv)
-  return paletteDiv
+  parent.appendChild(palette)
+  return palette
 }
 
 const createGradientPalette = (parent, colors) => {
-  const gradientPaletteDiv = createElement('div', 'palette')
-  gradientPaletteDiv.style.display = 'none'
+  const gradientPalette = createElement('div', 'palette')
+  gradientPalette.style.display = 'none'
 
   colors.forEach((color) => {
     let paletteColor = createElement('div', 'palette-color')
@@ -70,20 +70,20 @@ const createGradientPalette = (parent, colors) => {
       selected.color = color.css()
       document.getElementById('current-color').style.backgroundColor = selected.color
     })
-    gradientPaletteDiv.appendChild(paletteColor)
+    gradientPalette.appendChild(paletteColor)
   })
 
-  parent.appendChild(gradientPaletteDiv)
-  return gradientPaletteDiv
+  parent.appendChild(gradientPalette)
+  return gradientPalette
 }
 
 const createCanvas = (parent, rows, columns) => {
-  const canvasDiv = createElement('div', 'canvas')
+  const canvas = createElement('div', 'canvas')
 
-  ArrayUtil.range(rows).forEach(rowNum => addRow(canvasDiv, columns, rowNum))
+  ArrayUtil.range(rows).forEach(rowNum => addRow(canvas, columns, rowNum))
 
-  parent.appendChild(canvasDiv)
-  return canvasDiv
+  parent.appendChild(canvas)
+  return canvas
 }
 
 let baseColors = [
