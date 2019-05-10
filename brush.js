@@ -27,6 +27,29 @@ const createBrushTool = (selected) => {
   bucketSelector.addEventListener('click', () => selected.brush = bucket)
   config.appendChild(bucketSelector)
 
+  const horizontalStripeSelector = createElement('div', 'selector fas fa-grip-lines', 'pen-selector')
+  horizontalStripeSelector.title = 'Horizontal Stripes'
+  const horizontalStripe = new Brush('Horizontal Stripe', horizontalStripeSelector, (pixel, sel) => {
+    sel.canvas.pixels
+      .filter((row, rowIdx) => rowIdx % 2 === pixel.row % 2)
+      .forEach(filteredRow => filteredRow.forEach(col => col.setColor(sel.color)))
+  })
+  horizontalStripeSelector.addEventListener('click', () => selected.brush = horizontalStripe)
+  config.appendChild(horizontalStripeSelector)
+
+  const verticalStripeSelector = createElement('div', 'selector fas fa-grip-lines-vertical', 'pen-selector')
+  verticalStripeSelector.title = 'Horizontal Stripes'
+  const verticalStripe = new Brush('Horizontal Stripe', verticalStripeSelector, (pixel, sel) => {
+    sel.canvas.pixels
+      .forEach(row => {
+        row
+          .filter((col, colIdx) => colIdx % 2 === pixel.column % 2)
+          .forEach(fCol => fCol.setColor(sel.color))
+      })
+  })
+  verticalStripeSelector.addEventListener('click', () => selected.brush = verticalStripe)
+  config.appendChild(verticalStripeSelector)
+
   selected.brush = bucket
 
   config.style.display = 'none'

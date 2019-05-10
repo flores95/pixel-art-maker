@@ -1,5 +1,7 @@
 class Pixel {
-  constructor(color = 'white', element = null) {
+  constructor(row, column, color = 'white', element = null) {
+    this.row = row
+    this.column = column
     this.color = color,
     this.element = element
   }
@@ -34,7 +36,7 @@ class Canvas {
   }
 
   addPixel = (rowElement, row, col, selected) => {
-    const pixel = new Pixel('white', createElement('div', 'box', `r${row}c${col}`))
+    const pixel = new Pixel(row, col, 'white', createElement('div', 'box', `r${row}c${col}`))
     pixel.element.addEventListener('click', () => {
       selected.brush.paint(pixel, selected)
     })
