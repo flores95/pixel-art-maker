@@ -68,6 +68,14 @@
   color: rgba(0,0,0,.7);
 }
 
+.brush-config {
+  justify-content: flex-start;
+}
+
+.brush-config > div {
+  max-width: 32px;
+}
+
 .hidden {
   display: none;
 }

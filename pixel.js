@@ -8,12 +8,6 @@ const createElement = (tag = 'div', className = '', id = '') => {
   return el
 } 
 
-const selected = {
-  palette: null,
-  color: 'white',
-  tool: null
-}
-
 const baseColors = [
   {rgb: [255, 0, 0, 1], attrs: ['red']},
   {rgb: [0, 255, 0, 1], attrs: ['green']},
@@ -24,10 +18,20 @@ const baseColors = [
   {rgb: [255, 255, 255, 1], attrs: ['red', 'green', 'blue']}
 ]
 
+const selected = {
+  palette: null,
+  color: 'white',
+  tool: null,
+  brush: null,
+  canvas: null
+}
+
 const divMainContainer = document.querySelector('.main-container')
 const canvas = Canvas.createCanvas(divMainContainer, 40, 60, selected)
+selected.canvas = canvas
+
 createToolbox(
   divMainContainer,
-  createPaintTool(selected),
+  createBrushTool(selected),
   createColorPalette(baseColors, selected)
 )
