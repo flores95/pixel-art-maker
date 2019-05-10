@@ -40,6 +40,10 @@
   padding-top: 10px;
 }
 
+.palette-config {
+  flex-flow: column nowrap;
+}
+
 .palette-color {
   height: 20px;
   width: 20px;
